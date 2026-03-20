@@ -10,7 +10,7 @@ No confirmation message displayed after cancelling an errand in queue
 
 ## Preconditions
 - User is logged in
-- User has an active subscription (AH+)
+- User has an active subscription 
 - User has an ongoing errand placed in queue
 
 ## Steps to Reproduce
