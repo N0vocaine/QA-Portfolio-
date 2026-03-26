@@ -1,39 +1,34 @@
-# Mobile App Smoke Test Suite
+# Smoke Tests
 
-## ST-001 Launch app
-### Steps
-1. Open the app
+## Objective
+Quick validation that critical app functionality works after a new build.
 
-### Expected Result
-The app launches successfully without crashing.
+## Scenarios
 
----
+### 1. App launch
+- Open the app  
+- Verify home screen loads  
 
-## ST-002 Log in
-### Steps
-1. Tap login
-2. Enter valid credentials
-3. Complete authentication
+### 2. Navigation
+- Navigate between main sections  
+- Verify no crashes or broken screens  
 
-### Expected Result
-The user logs in successfully and reaches the home screen.
+### 3. Start care flow
+- Enter a main flow (e.g. booking / consultation)  
+- Verify flow starts correctly  
 
----
+### 4. Continue in flow
+- Answer first question  
+- Tap “Continue”  
+- Verify next step loads  
 
-## ST-003 Open care flow
-### Steps
-1. Navigate to the main care entry
-2. Select a category
+### 5. Links
+- Tap Terms of Use / Privacy Policy  
+- Verify links open correctly  
 
-### Expected Result
-The flow opens correctly and the first question is displayed.
+### 6. Language check
+- Set app to English  
+- Verify main screens are in English  
 
----
-
-## ST-004 Open ongoing errand
-### Steps
-1. Open the errands section
-2. Select an ongoing errand
-
-### Expected Result
-The errand opens successfully and the conversation is visible.
+## Expected Result
+All critical flows are accessible and functional without blocking issues.
