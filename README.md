@@ -13,6 +13,7 @@ I focus on understanding the full user journey, identifying risks, and ensuring 
 - [Test plans](./test-plans)
 - [Improvements](./improvements)
 - [Exploratory testing](./exploratory-testing)
+- [Regression suite](./regression-suite)
 
 ## Note
 All examples are anonymized and created for portfolio purposes.
