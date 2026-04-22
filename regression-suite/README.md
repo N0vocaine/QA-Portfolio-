@@ -8,45 +8,58 @@
 
 ## Context and motivation
 
-During my internship at a digital healthcare company, I noticed that the existing test cases for the mobile app were fragmented and in several areas outdated — some no longer reflected the current flows, others were missing entire sections that had been added to the product over time. Coverage was also uneven: certain high-risk areas had sparse tests while lower-risk areas had more.
+During my internship at a digital healthcare company, I noticed that the existing test cases were not well organised and some were outdated. Some flows had changed in the app but were not updated in the tests, and some areas were missing tests completely.
 
-I raised this with the team and offered to rebuild the regression suite from scratch, using the live app, current user stories, and acceptance criteria as my source of truth. The goal was not only to improve coverage but to produce something the team could actually use going forward — structured, prioritised, and executable without needing extra context.
+Test coverage was also not balanced — some important areas had very few tests, while less important areas had more.
 
-This file is the result of that initiative.
+Because of this, I suggested rebuilding the regression suite so it would be easier to use and reflect the current product.
 
 ---
 
 ## What I built
 
-A full regression suite for a mobile telehealth app that connects patients with healthcare professionals across multiple care categories. The suite covers **197 test cases across 18 functional areas**, structured to follow the real user journey from installation through to cross-platform behaviour.
+A full regression test suite for a mobile healthcare app. It includes **197 test cases across 18 functional areas** and follows the main user journey in the app.
 
 ---
 
 ## How I approached it
 
-### Map the journey, not just the features
+### 1. Follow the user journey
 
-I structured the folders in the order a real user experiences the app: install → onboarding → authentication → home screen → category selection → question flow → care outcome (queue or appointment) → communication → notifications. Each folder mirrors a stage in that journey. This makes it faster to triage failures and understand the downstream impact of any broken flow.
+Instead of organising tests by feature only, I structured them based on how a user moves through the app:
 
-### Establish risk before writing test cases
+install → onboarding → login → home → selecting care → answering questions → outcome (queue or booking) → communication → notifications
 
-In a medical app, not all failures are equal. A broken animation is annoying. A broken authentication step or a wrong care outcome is a patient safety risk. Before writing individual test cases, I built a **High Risk Areas** sheet — 12 areas where a defect could cause wrong care, blocked access, or data exposure. That list directly shaped how I assigned priorities across the suite.
+This makes it easier to understand where a problem happens and what it affects.
 
-The result: the majority of test cases are P1 Critical or P2 High. P3 Medium is reserved for cosmetic or genuinely low-impact scenarios.
+### 2. Focus on risk first
 
-### Make it usable in practice, not just as documentation
+Before writing test cases, I identified **12 high-risk areas** where issues could have serious impact, such as:
 
-Two supporting sheets were added to make the suite operational:
+- blocked access to care
+- wrong care outcome
+- data issues
 
-- **Smoke Test Checklist** – 15 critical-path checks that must pass before any full regression run or deployment. Designed to catch blockers in under 30 minutes.
-- **Test Data Matrix** – 12 user profiles (new user, user mid-queue, user with failed authentication, symptom leading to emergency escalation, etc.) that map directly to test cases and remove ambiguity about test setup.
+Based on this, I set priorities:
 
-### Areas I deliberately did not skip
+- **P1 / P2** → important flows
+- **P3** → low-impact or UI issues
 
-- **Error Handling & Network** (14 cases): a user who loses connection while mid-queue must not lose their active care state.
-- **Data Integrity** (6 cases, all P1): incorrect data in a medical context has direct clinical consequences.
-- **Accessibility** (6 cases): accessible healthcare is non-negotiable, not a stretch goal.
-- **Security & Privacy** (7 cases): session handling, input validation, and data exposure are in scope given the sensitivity of health data.
+### 3. Make it practical to use
+
+I added extra sheets to help the team use the suite easily:
+
+- **Smoke Test Checklist** – 15 important checks to quickly verify the app before a release
+- **Test Data Matrix** – 12 user scenarios (e.g. new user, user in queue, failed login) to make test setup clear
+
+---
+
+## Important areas covered
+
+- **Error Handling & Network** (14 cases) – users should not lose their progress if connection is lost
+- **Data Integrity** (6 cases, all P1) – correct data is critical in healthcare
+- **Accessibility** (6 cases) – important for all users
+- **Security & Privacy** (7 cases) – covers login, sessions, and data safety
 
 ---
 
